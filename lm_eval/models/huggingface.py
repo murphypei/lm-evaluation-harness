@@ -356,6 +356,7 @@ class HuggingFaceAutoLM(BaseLM):
             pretrained if tokenizer is None else tokenizer,
             revision=revision + ("/" + subfolder if subfolder is not None else ""),
             trust_remote_code=trust_remote_code,
+            use_fast=False if "llama" in tokenizer else True,
         )
         tokenizer.pad_token = tokenizer.eos_token
         return tokenizer
